@@ -1,0 +1,48 @@
+namespace messages;
+
+enum Dept:byte {
+    D1 = 0,
+    D2,
+    D3 = 2
+}
+
+union Emp {
+    staff:Person,
+    Pass:Card
+}
+
+struct DOB {
+    year:int;
+    month:int;
+    day:int;
+}
+
+table Address {
+    add:string;
+    phone:int;
+}
+
+table Card {
+    Cnum:int;
+    Pid:int;
+}
+
+table Person {
+    fname:Name;
+    lname:string (deprecated);
+    age:[DOB];
+    id:int;
+    dp:Dept = D3;
+    location:Address;
+}
+
+table Name {
+    last:string;
+    first:string;
+}
+
+rpc_service GetInfo {
+    GetPerson(Name):Person;
+}
+
+root_type Person;
